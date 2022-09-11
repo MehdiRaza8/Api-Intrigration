@@ -1,10 +1,12 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings, prefer_const_constructors
+// ignore_for_file: prefer_interpolation_to_compose_strings, prefer_const_constructors, sized_box_for_whitespace
 
 import 'dart:convert';
 
 import 'package:api_intregrations/Models/post_modles.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
+import '../services/post_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,22 +16,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<PostsModel> PostList = [];
-  Future<List<PostsModel>> getPostApi() async {
-    final response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
-    var data = jsonDecode(response.body.toString());
-    if (response.statusCode == 200) {
-      PostList.clear();
-      for (var i in data) {
-        PostList.add(PostsModel.fromJson(i));
-      }
-      return PostList;
-    } else {
-      return PostList;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 50,
                           width: 50,
                           child: CircularProgressIndicator(
-                            color: Colors.grey,
+                            color: Colors.red,
                           )),
                     );
                   } else {
@@ -57,6 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: PostList.length,
                         itemBuilder: (context, index) {
                           return Card(
+                            shadowColor: Colors.grey,
+                            elevation: 8,
+                            margin: EdgeInsets.all(10),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
