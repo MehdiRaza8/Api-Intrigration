@@ -1,6 +1,7 @@
 import 'package:api_intregrations/Models/photos.dart';
 import 'package:api_intregrations/screens/home_screen.dart';
 import 'package:api_intregrations/screens/photos.dart';
+import 'package:api_intregrations/screens/signup.dart';
 import 'package:api_intregrations/screens/user.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const UserData(),
+      home: const SignUp(),
     );
   }
 }
